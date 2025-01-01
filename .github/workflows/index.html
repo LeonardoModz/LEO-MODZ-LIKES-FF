@@ -7,24 +7,38 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #4B0082; /* Fundo roxo */
+            color: #fff;
             margin: 0;
             padding: 0;
+            overflow: hidden; /* Para ocultar barras de rolagem */
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Para colocar as partículas no fundo */
         }
 
         .container {
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.1); /* Fundo semi-transparente */
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1; /* Para ficar acima das partículas */
+            color: #fff;
         }
 
         h1 {
             text-align: center;
-            color: #4CAF50;
+            color: #DDA0DD; /* Lilás claro para combinar com o tema */
+            font-weight: bold;
         }
 
         input[type="text"] {
@@ -38,41 +52,45 @@
         input[type="submit"] {
             width: 100%;
             padding: 10px;
-            background-color: #4CAF50;
-            color: white;
+            background-color: #1E90FF; /* Azul */
+            color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #4682B4; /* Azul mais escuro */
         }
 
         .response-box {
             margin-top: 20px;
             padding: 10px;
-            background-color: #f9f9f9;
+            background-color: rgba(0, 0, 0, 0.2);
             border: 1px solid #ddd;
             border-radius: 4px;
             text-align: center;
+            color: #fff;
         }
 
         .response-box.success {
-            background-color: #d4edda;
-            border-color: #c3e6cb;
+            background-color: rgba(50, 205, 50, 0.2);
+            border-color: #32CD32;
         }
 
         .response-box.error {
-            background-color: #f8d7da;
-            border-color: #f5c6cb;
+            background-color: rgba(255, 69, 0, 0.2);
+            border-color: #FF4500;
         }
     </style>
 </head>
 <body>
 
+<div id="particles-js"></div> <!-- Área das partículas -->
+
 <div class="container">
-    <h1>BY LEO MODZ</h1>
+    <h1>LEO MODZ LIKES FF</h1>
     <form id="likeForm">
         <label for="id">DIGITE O ID PARA ENVIAR OS LIKES</label>
         <input type="text" id="id" name="id" required>
@@ -83,7 +101,72 @@
     <div id="responseBox" class="response-box"></div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
+    particlesJS("particles-js", {
+        "particles": {
+            "number": {
+                "value": 80,
+                "density": {
+                    "enable": true,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#DDA0DD" /* Cor das partículas (Lilás) */
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                }
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": false
+            },
+            "size": {
+                "value": 5,
+                "random": true
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#DDA0DD", /* Cor das linhas entre partículas */
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 4,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "grab"
+                },
+                "onclick": {
+                    "enable": true,
+                    "mode": "push"
+                },
+                "resize": true
+            }
+        },
+        "retina_detect": true
+    });
+
     document.getElementById('likeForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
